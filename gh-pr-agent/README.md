@@ -10,7 +10,11 @@ dagger
 AGENT=$(. <repo> <gh-token>)
 
 $AGENT | set-prnumber xxx | ask "What's the purpose of this PR?"
+```
 
+## Examples of prompts
+
+```
 $AGENT | set-prnumber xxx | ask "What files have changed in this PR?"
 
 $AGENT | set-prnumber xxx | ask "Can you catch all mistakes that should be fixed on the PR?"
