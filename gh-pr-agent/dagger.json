@@ -1,0 +1,13 @@
+{
+  "name": "gh-review-agent",
+  "engineVersion": "v0.17.0-llm.9",
+  "sdk": {
+    "source": "go"
+  },
+  "dependencies": [
+    {
+      "name": "gh-pr-workspace",
+      "source": "gh-pr-workspace"
+    }
+  ]
+}
