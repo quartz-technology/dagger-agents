@@ -34,17 +34,21 @@ func (g *GhReviewAgent) Ask(
 		prNumber = g.PullRequestNumber
 	}
 
-	return dag.Llm().
+	return dag.LLM().
 		SetGhPrWorkspace("gh-pr-workspace", dag.GhPrWorkspace(g.Repo, prNumber, g.Token)).
+		SetGhRepoWorkspace("gh-repo-workspace", dag.GhRepoWorkspace(g.Repo, g.Token)).
 		WithPromptVar("question", question).
 		WithPrompt(
 			`You are a helpful assistant that can answer question regarding a given pull request.
 
-You have been given access to a workspace containing two different tools: 
+You have been given access to a workspace gr-pr-workspace containing two different tools: 
 - a tool conversation to get all the messages sent in the PR including reviews and comments.
 - a tool repository to get the differences between the PR and the origin or read files contents.
 
-Answer to the given question using the conversation tool and repository tool in a consice and pedagogical way.
+You have been given access to a workspace gh-repo-workspace containing on tool:
+- a tool list-pull-requests to get all the pull requests in the repository with the given filters.
+
+Answer to the given question using the tools in an efficient way.
 
 <question>
 $question

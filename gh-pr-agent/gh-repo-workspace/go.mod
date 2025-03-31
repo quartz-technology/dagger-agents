@@ -1,4 +1,4 @@
-module dagger/gh-review-agent
+module dagger/gh-repo-workspace
 
 go 1.23.6
 

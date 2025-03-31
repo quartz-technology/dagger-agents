@@ -7,6 +7,10 @@ import (
 )
 
 type Repository struct {
+	// The repository URL
+	//+internal-use-only
+	URL string
+
 	// The container containing the repository pull request
 	//+internal-use-only
 	Container *dagger.Container
@@ -20,6 +24,7 @@ func (g *GhPrWorkspace) Repository(ctx context.Context) (*Repository, error) {
 		WithExec([]string{"gh", "pr", "checkout", fmt.Sprintf("%d", g.PullRequestNumber)})
 
 	return &Repository{
+		URL:       g.RepositoryURL,
 		Container: repo,
 	}, nil
 }
@@ -33,3 +38,4 @@ func (r *Repository) Diff(ctx context.Context) (string, error) {
 func (r *Repository) Read(path string) *dagger.File {
 	return r.Container.File(path)
 }
+

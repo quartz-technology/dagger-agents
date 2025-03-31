@@ -2,5 +2,3 @@
 /internal/dagger
 /internal/querybuilder
 /internal/telemetry
-
-.envrc
